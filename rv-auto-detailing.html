@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RV Auto Detailing — Chennai</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --black:#000000;
+    --graphite:#0D0F12;
+    --steel:#3A3F44;
+    --steel-light:#6B7176;
+    --white:#FAFAFA;
+    --amber:#FF6A00;
+    --amber-dim:#CC5500;
+    --line:#22262B;
+    --display:'Oswald',sans-serif;
+    --body:'Inter',sans-serif;
+  }
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--body);background:var(--white);color:var(--graphite);overflow-x:hidden;}
+
+  /* ── TOP STRIP ── */
+  .top-strip{
+    background:var(--black);
+    color:#888;
+    font-size:11.5px;
+    letter-spacing:0.04em;
+    padding:8px 5vw;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .top-strip a{color:#aaa;text-decoration:none;}
+  .top-strip a:hover{color:var(--amber);}
+  .strip-left{display:flex;gap:20px;align-items:center;flex-wrap:wrap;}
+  .strip-right{display:flex;gap:20px;align-items:center;flex-wrap:wrap;}
+  .status-dot{
+    display:inline-flex;align-items:center;gap:6px;
+    color:#4ADE80;font-weight:600;
+  }
+  .status-dot::before{
+    content:'';width:7px;height:7px;border-radius:50%;background:#4ADE80;
+    box-shadow:0 0 0 3px rgba(74,222,128,0.2);
+  }
+  .rating-strip{display:flex;align-items:center;gap:5px;color:#ccc;}
+  .stars{color:var(--amber);letter-spacing:1px;}
+
+  /* ── NAV ── */
+  nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(13,15,18,0.96);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 5vw;height:76px;
+  }
+  .nav-logo{display:flex;align-items:center;gap:13px;text-decoration:none;}
+  .logo-mark{
+    width:46px;height:46px;
+    background:var(--amber);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--display);font-weight:700;font-size:18px;
+    color:var(--black);
+    transform:skewX(-8deg);
+    flex-shrink:0;
+  }
+  .logo-mark span{display:block;transform:skewX(8deg);}
+  .logo-text{font-family:var(--display);font-size:20px;font-weight:600;color:var(--white);letter-spacing:0.02em;line-height:1.1;}
+  .logo-text small{display:block;font-family:var(--body);font-size:9.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);margin-top:3px;}
+
+  .nav-links{display:flex;gap:38px;list-style:none;}
+  .nav-links a{
+    font-family:var(--body);font-size:12.5px;font-weight:600;
+    letter-spacing:0.1em;text-transform:uppercase;color:#ccc;
+    text-decoration:none;position:relative;padding:6px 0;transition:color 0.2s;
+  }
+  .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--amber);transition:width 0.25s;}
+  .nav-links a:hover{color:var(--white);}
+  .nav-links a:hover::after{width:100%;}
+
+  .nav-cta{
+    font-family:var(--body);font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+    background:var(--amber);color:var(--black);padding:11px 24px;text-decoration:none;
+    transition:background 0.2s,transform 0.15s;
+  }
+  .nav-cta:hover{background:#ff7e1f;transform:translateY(-1px);}
+
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;}
+  .hamburger span{display:block;width:24px;height:2px;background:var(--white);}
+
+  /* ── HERO ── */
+  #home{
+    position:relative;
+    background:var(--graphite);
+    min-height:88vh;
+    display:flex;align-items:center;
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute;inset:0;
+    background:url('https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=1600&q=80') center/cover;
+    clip-path:polygon(0 0,100% 0,100% 100%,38% 100%);
+    filter:saturate(1.1) brightness(0.55);
+  }
+  .hero-bg::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(100deg, var(--graphite) 0%, var(--graphite) 30%, transparent 70%);
+  }
+  .hero-content{
+    position:relative;z-index:2;
+    padding:0 5vw;
+    max-width:680px;
+  }
+  .hero-eyebrow{
+    display:flex;align-items:center;gap:12px;
+    font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--amber);margin-bottom:24px;
+  }
+  .hero-eyebrow::before{content:'';width:30px;height:2px;background:var(--amber);}
+  .hero-title{
+    font-family:var(--display);font-size:clamp(42px,6.2vw,84px);font-weight:700;
+    color:var(--white);line-height:0.98;letter-spacing:-0.01em;text-transform:uppercase;
+    margin-bottom:24px;
+  }
+  .hero-title .accent{color:var(--amber);}
+  .hero-sub{font-size:16px;color:#bbb;line-height:1.75;max-width:480px;margin-bottom:40px;font-weight:300;}
+  .hero-buttons{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px;}
+  .btn-amber{
+    font-family:var(--body);font-size:12.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+    background:var(--amber);color:var(--black);padding:17px 34px;text-decoration:none;
+    transition:background 0.2s,transform 0.15s;display:inline-block;
+  }
+  .btn-amber:hover{background:#ff7e1f;transform:translateY(-2px);}
+  .btn-ghost{
+    font-family:var(--body);font-size:12.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+    background:transparent;color:var(--white);padding:17px 34px;text-decoration:none;
+    border:1px solid #444;transition:border-color 0.2s,transform 0.15s;display:inline-block;
+  }
+  .btn-ghost:hover{border-color:var(--white);transform:translateY(-2px);}
+
+  .hero-meta{display:flex;gap:36px;flex-wrap:wrap;border-top:1px solid #2a2d31;padding-top:28px;}
+  .hm-item{display:flex;align-items:flex-start;gap:10px;}
+  .hm-item svg{color:var(--amber);flex-shrink:0;margin-top:2px;}
+  .hm-label{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#888;margin-bottom:3px;}
+  .hm-value{font-size:13.5px;color:var(--white);font-weight:500;}
+
+  /* amber swipe divider */
+  .swipe-divider{
+    height:6px;
+    background:linear-gradient(90deg, var(--amber) 0%, #ffb347 50%, var(--amber) 100%);
+    position:relative;
+    overflow:hidden;
+  }
+  .swipe-divider::after{
+    content:'';position:absolute;top:0;left:-30%;width:30%;height:100%;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    animation:swipe 3.5s ease-in-out infinite;
+  }
+  @keyframes swipe{0%{left:-30%;}100%{left:130%;}}
+
+  /* ── SECTION SHARED ── */
+  section{scroll-margin-top:76px;}
+  .section-inner{max-width:1280px;margin:0 auto;padding:0 5vw;}
+  .section-label{
+    display:flex;align-items:center;gap:12px;
+    font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--amber);margin-bottom:18px;
+  }
+  .section-label::before{content:'';width:26px;height:2px;background:var(--amber);}
+  .section-title{
+    font-family:var(--display);font-size:clamp(30px,4vw,50px);font-weight:600;
+    text-transform:uppercase;letter-spacing:-0.01em;line-height:1.05;color:var(--graphite);margin-bottom:18px;
+  }
+  .section-desc{font-size:15px;color:#666;line-height:1.8;max-width:580px;font-weight:300;}
+
+  /* ── SERVICES ── */
+  #services{background:var(--white);padding:110px 0;}
+  .services-header{margin-bottom:60px;}
+  .services-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));
+    gap:1px;background:var(--line);border:1px solid var(--line);
+  }
+  .service-card{
+    background:var(--white);padding:40px 36px;
+    transition:background 0.25s;
+    position:relative;
+  }
+  .service-card:hover{background:var(--graphite);}
+  .service-card:hover .service-title,
+  .service-card:hover .service-desc{color:var(--white);}
+  .service-card:hover .service-desc{color:#aaa;}
+  .service-num{
+    font-family:var(--display);font-size:13px;font-weight:600;color:var(--amber);
+    letter-spacing:0.1em;margin-bottom:22px;display:block;
+  }
+  .service-title{
+    font-family:var(--display);font-size:22px;font-weight:600;text-transform:uppercase;
+    color:var(--graphite);margin-bottom:14px;transition:color 0.25s;letter-spacing:0.01em;
+  }
+  .service-desc{font-size:14px;color:#777;line-height:1.75;transition:color 0.25s;font-weight:300;}
+  .service-price{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-top:20px;border-top:1px solid var(--line);
+  }
+  .service-card:hover .service-price{border-top-color:#2a2d31;}
+  .sp-from{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#999;}
+  .service-card:hover .sp-from{color:#888;}
+  .sp-amount{font-family:var(--display);font-size:20px;font-weight:600;color:var(--amber);}
+
+  /* ── GALLERY (our work) ── */
+  #gallery{background:var(--graphite);padding:110px 0;}
+  #gallery .section-label{color:var(--amber);}
+  #gallery .section-title{color:var(--white);}
+  #gallery .section-desc{color:#999;}
+  .gallery-header{margin-bottom:56px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;}
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    grid-auto-rows:200px;
+    gap:10px;
+  }
+  .g-item{position:relative;overflow:hidden;cursor:pointer;}
+  .g-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease,filter 0.6s;filter:saturate(1.05);}
+  .g-item:hover img{transform:scale(1.08);}
+  .g-item::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(0deg, rgba(0,0,0,0.75) 0%, transparent 45%);
+    opacity:0;transition:opacity 0.3s;
+  }
+  .g-item:hover::after{opacity:1;}
+  .g-tag{
+    position:absolute;bottom:16px;left:16px;z-index:2;
+    font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--white);opacity:0;transform:translateY(8px);
+    transition:opacity 0.3s,transform 0.3s;
+  }
+  .g-item:hover .g-tag{opacity:1;transform:translateY(0);}
+  .g-tag span{display:block;color:var(--amber);font-size:9px;letter-spacing:0.16em;margin-top:3px;}
+
+  .g-wide{grid-column:span 2;}
+  .g-tall{grid-row:span 2;}
+
+  /* ── ABOUT ── */
+  #about{background:var(--white);padding:110px 0;}
+  .about-grid{display:grid;grid-template-columns:0.95fr 1.05fr;gap:72px;align-items:center;}
+  .about-visual{position:relative;}
+  .about-visual img{width:100%;height:540px;object-fit:cover;display:block;}
+  .about-badge{
+    position:absolute;bottom:-28px;left:-28px;
+    background:var(--amber);color:var(--black);
+    padding:24px 28px;
+    text-align:left;
+  }
+  .about-badge .ab-num{font-family:var(--display);font-size:38px;font-weight:700;line-height:1;}
+  .about-badge .ab-label{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-top:6px;}
+
+ 
+  .about-body{font-size:15px;color:#555;line-height:1.85;margin-bottom:22px;font-weight:300;}
+  .about-list{margin-top:36px;display:flex;flex-direction:column;gap:18px;}
+  .about-item{display:flex;align-items:flex-start;gap:16px;}
+  .ai-check{
+    width:26px;height:26px;background:var(--graphite);flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;margin-top:1px;
+  }
+  .ai-check svg{color:var(--amber);}
+  .ai-text strong{display:block;font-size:14.5px;font-weight:600;color:var(--graphite);margin-bottom:3px;}
+  .ai-text span{font-size:13.5px;color:#777;font-weight:300;}
+
+  /* ── CONTACT ── */
+  #contact{background:var(--graphite);padding:110px 0;}
+  #contact .section-label{color:var(--amber);}
+  #contact .section-title{color:var(--white);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;}
+  .contact-card{
+    background:#15181c;border:1px solid var(--line);padding:40px;
+  }
+  .cc-row{display:flex;gap:18px;align-items:flex-start;padding:20px 0;border-bottom:1px solid var(--line);}
+  .cc-row:last-child{border-bottom:none;}
+  .cc-icon{
+    width:42px;height:42px;background:var(--amber);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .cc-icon svg{color:var(--black);}
+  .cc-label{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#888;margin-bottom:6px;}
+  .cc-value{font-size:15px;color:var(--white);font-weight:500;line-height:1.6;}
+  .cc-value a{color:var(--white);text-decoration:none;}
+  .cc-value a:hover{color:var(--amber);}
+
+  .hours-table{margin-top:24px;}
+  .hours-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px;}
+  .hours-row:last-child{border-bottom:none;}
+  .hours-day{color:#999;font-weight:500;}
+  .hours-time{color:var(--white);font-weight:600;}
+  .hours-row.today .hours-day,.hours-row.today .hours-time{color:var(--amber);}
+
+  .map-panel{background:#15181c;border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;}
+  .map-frame{height:280px;width:100%;border:0;filter:grayscale(0.3) contrast(1.1);}
+  .map-footer{padding:24px 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .plus-code{font-family:var(--display);font-size:13px;color:#888;letter-spacing:0.05em;}
+  .map-link{
+    font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--amber);text-decoration:none;display:flex;align-items:center;gap:8px;
+  }
+  .map-link:hover{gap:12px;transition:gap 0.2s;}
+
+  .quote-form{margin-top:32px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+  .form-group input,.form-group select,.form-group textarea{
+    width:100%;background:var(--graphite);border:1px solid #2a2d31;color:var(--white);
+    padding:14px 16px;font-family:var(--body);font-size:13.5px;outline:none;transition:border-color 0.2s;
+  }
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--amber);}
+  .form-group textarea{height:90px;resize:vertical;margin-bottom:14px;}
+  .form-submit{
+    width:100%;background:var(--amber);color:var(--black);border:none;padding:16px;
+    font-family:var(--body);font-size:12.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+    cursor:pointer;transition:background 0.2s,transform 0.15s;
+  }
+  .form-submit:hover{background:#ff7e1f;transform:translateY(-1px);}
+
+  /* ── FOOTER ── */
+  footer{background:var(--black);padding:44px 5vw 28px;border-top:1px solid var(--line);}
+  .footer-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;}
+  .footer-logo{font-family:var(--display);font-size:18px;font-weight:600;color:var(--white);text-transform:uppercase;}
+  .footer-logo span{color:var(--amber);}
+  .footer-copy{font-size:11.5px;color:#666;letter-spacing:0.04em;}
+  .footer-links{display:flex;gap:26px;}
+  .footer-links a{font-size:11.5px;color:#666;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+  .footer-links a:hover{color:var(--amber);}
+
+  /* ── ANIM ── */
+  .fade-up{opacity:0;transform:translateY(26px);transition:opacity 0.7s,transform 0.7s;}
+  .fade-up.visible{opacity:1;transform:none;}
+
+  /* ── MOBILE ── */
+  @media (max-width:980px){
+    .about-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px;}
+    .g-wide{grid-column:span 2;}
+    .reviews-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:760px){
+    .nav-links{display:none;}
+    .hamburger{display:flex;}
+    .nav-cta{display:none;}
+    .nav-links.open{
+      display:flex;flex-direction:column;position:fixed;top:76px;left:0;right:0;
+      background:var(--graphite);padding:10px 0;border-top:1px solid var(--line);z-index:99;
+    }
+    .nav-links.open a{padding:16px 6vw;border-bottom:1px solid var(--line);}
+    .hero-bg{clip-path:none;}
+    .hero-content{max-width:100%;padding:0 6vw;}
+    .hero-meta{gap:24px;}
+    .gallery-grid{grid-template-columns:1fr;grid-auto-rows:240px;}
+    .g-wide{grid-column:span 1;}
+    .form-row{grid-template-columns:1fr;}
+    .top-strip{font-size:10.5px;}
+    .about-badge{position:static;margin-top:-1px;display:flex;align-items:center;gap:14px;}
+  }
+  /* ── FLOATING WHATSAPP ── */
+  .wa-float{
+    position:fixed;bottom:28px;right:28px;z-index:200;
+    width:60px;height:60px;border-radius:50%;
+    background:#25D366;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 24px rgba(0,0,0,0.35);
+    text-decoration:none;
+    transition:transform 0.2s,box-shadow 0.2s;
+    animation:wa-pulse 2.6s ease-in-out infinite;
+  }
+  .wa-float:hover{transform:scale(1.08);box-shadow:0 10px 30px rgba(0,0,0,0.45);}
+  .wa-float svg{color:#fff;width:30px;height:30px;}
+  @keyframes wa-pulse{
+    0%,100%{box-shadow:0 8px 24px rgba(0,0,0,0.35),0 0 0 0 rgba(37,211,102,0.45);}
+    50%{box-shadow:0 8px 24px rgba(0,0,0,0.35),0 0 0 10px rgba(37,211,102,0);}
+  }
+  @media (max-width:760px){
+    .wa-float{width:54px;height:54px;bottom:20px;right:20px;}
+    .wa-float svg{width:26px;height:26px;}
+  }
+  /* ── REVIEWS ── */
+  #reviews{background:var(--white);padding:110px 0;}
+  .reviews-header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:56px;}
+  .rating-summary{display:flex;align-items:center;gap:18px;}
+  .rs-score{font-family:var(--display);font-size:56px;font-weight:700;color:var(--graphite);line-height:1;}
+  .rs-meta{display:flex;flex-direction:column;gap:4px;}
+  .rs-stars{color:var(--amber);font-size:18px;letter-spacing:2px;}
+  .rs-count{font-size:12.5px;color:#888;}
+  .reviews-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:var(--line);border:1px solid var(--line);
+  }
+  .review-card{background:var(--white);padding:36px 32px;display:flex;flex-direction:column;}
+  .review-stars{color:var(--amber);font-size:14px;letter-spacing:2px;margin-bottom:18px;}
+  .review-quote{font-size:14.5px;color:#444;line-height:1.8;font-weight:300;flex-grow:1;margin-bottom:24px;}
+  .review-author{display:flex;align-items:center;gap:12px;padding-top:20px;border-top:1px solid var(--line);}
+  .ra-avatar{
+    width:38px;height:38px;border-radius:50%;background:var(--graphite);color:var(--amber);
+    display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:600;font-size:14px;flex-shrink:0;
+  }
+  .ra-name{font-size:13.5px;font-weight:600;color:var(--graphite);}
+  .ra-sub{font-size:11.5px;color:#999;}
+</style>
+</head>
+<body>
+
+<div class="top-strip">
+  <div class="strip-left">
+    <span class="status-dot">Open · Closes 8 PM</span>
+    <span class="rating-strip"><span class="stars">★★★★★</span> 4.8 (26 reviews)</span>
+  </div>
+  <div class="strip-right">
+    <a href="https://www.instagram.com/rvautodetailing24/" target="_blank" rel="noopener">📷 @rvautodetailing24</a>
+    <a href="tel:09566127537">📞 095661 27537</a>
+  </div>
+</div>
+
+<nav id="navbar">
+  <a class="nav-logo" href="#home">
+    <div class="logo-mark"><span>RV</span></div>
+    <div class="logo-text">RV Auto Detailing<small>Car Detailing Studio</small></div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Our Work</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#contact">Contact Us</a></li>
+  </ul>
+  <a class="nav-cta" href="https://wa.me/919566127537?text=Hi%2C%20I%27d%20like%20to%20book%20a%20detailing%20slot" target="_blank" rel="noopener">
+    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" style="margin-right:7px;vertical-align:-2px;"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.77.46 3.45 1.32 4.95L2 22l5.32-1.39c1.43.78 3.04 1.2 4.72 1.2 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.78 14.07c-.24.68-1.39 1.3-1.92 1.37-.49.07-1.1.1-1.78-.11-.41-.13-.94-.3-1.62-.6-2.84-1.23-4.7-4.1-4.84-4.29-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.09.99-2.38.26-.28.57-.35.76-.35.19 0 .38 0 .54.01.18.01.41-.07.64.49.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.49-.14.14-.28.29-.12.56.16.28.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.21 1.36.28.14.44.12.6-.07.17-.19.71-.83.9-1.11.19-.28.38-.23.64-.14.26.09 1.66.78 1.94.93.28.14.47.21.54.33.07.12.07.71-.17 1.39z"/></svg>
+    WhatsApp Us
+  </a>
+  <div class="hamburger" id="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Pallavaram, Chennai</p>
+    <h1 class="hero-title">Detailing That<br><span class="accent">Holds a Shine.</span></h1>
+    <p class="hero-sub">Hand-finished car care for owners who notice the difference — paint correction, ceramic coating, and interior restoration done right, every time.</p>
+    <div class="hero-buttons">
+      <a href="https://wa.me/919566127537?text=Hi%2C%20I%27d%20like%20to%20book%20a%20detailing%20slot" target="_blank" rel="noopener" class="btn-amber">Book Your Car In</a>
+      <a href="#gallery" class="btn-ghost">See Our Work</a>
+    </div>
+    <div class="hero-meta">
+      <div class="hm-item">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.977 2.89a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.89a1 1 0 00-1.176 0l-3.976 2.89c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.977-2.89c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+        <div><div class="hm-label">Rating</div><div class="hm-value">4.8 / 5 · 26 Reviews</div></div>
+      </div>
+      <div class="hm-item">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div><div class="hm-label">Today</div><div class="hm-value">Open · Closes 8 PM</div></div>
+      </div>
+      <div class="hm-item">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        <div><div class="hm-label">Location</div><div class="hm-value">Jagajeevan Ram St, Pallavaram</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="swipe-divider"></div>
+
+<!-- ── SERVICES ── -->
+<section id="services">
+  <div class="section-inner">
+    <div class="services-header fade-up">
+      <p class="section-label">What We Do</p>
+      <h2 class="section-title">Built Around Your Car's Needs</h2>
+      <p class="section-desc">From a quick refresh before a long drive to a full paint correction, every service is carried out by hand with studio-grade products.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card fade-up">
+        <span class="service-num">01</span>
+        <h3 class="service-title">Full Body Wash</h3>
+        <p class="service-desc">Two-bucket hand wash with pH-neutral shampoo and a contactless dry to keep swirl marks off your paint.</p>
+      </div>
+
+      <div class="service-card fade-up">
+        <span class="service-num">02</span>
+        <h3 class="service-title">Auto Detailing</h3>
+        <p class="service-desc">A complete top-to-bottom detail covering exterior, interior, wheels, and trim — restored to a like-new finish.</p>
+      </div>
+
+      <div class="service-card fade-up">
+        <span class="service-num">03</span>
+        <h3 class="service-title">Car Waxing</h3>
+        <p class="service-desc">A protective wax layer that deepens shine and shields your paint from sun, dust, and minor abrasions.</p>
+      </div>
+
+      <div class="service-card fade-up">
+        <span class="service-num">04</span>
+        <h3 class="service-title">Wheel Washing</h3>
+        <p class="service-desc">Brake-dust and grime removed from rims and wells, finished with a tyre dressing for a clean, matte-black look.</p>
+      </div>
+
+      <div class="service-card fade-up">
+        <span class="service-num">05</span>
+        <h3 class="service-title">Exhaust Tip Polishing</h3>
+        <p class="service-desc">Tarnish and soot buffed off exhaust tips and chrome trim, brought back to a mirror finish.</p>
+      </div>
+
+      <div class="service-card fade-up">
+        <span class="service-num">06</span>
+        <h3 class="service-title">Headlight Polishing</h3>
+        <p class="service-desc">Wet-sanding and polishing to clear out yellowed, foggy headlights — restoring brightness and night visibility.</p>
+      </div>
+
+      <div class="service-card fade-up">
+        <span class="service-num">07</span>
+        <h3 class="service-title">Vehicle Interior Vacuuming</h3>
+        <p class="service-desc">Thorough vacuuming of seats, carpets, mats, and tight corners to lift out dust, sand, and debris.</p>
+      </div>
+
+      <div class="service-card fade-up">
+        <span class="service-num">08</span>
+        <h3 class="service-title">Seat Shampooing</h3>
+        <p class="service-desc">Deep-cleaned fabric and leather seats, lifting stains and odours for a fresh, hygienic cabin.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY / OUR WORK ── -->
+<section id="gallery">
+  <div class="section-inner">
+    <div class="gallery-header fade-up">
+      <div>
+        <p class="section-label">Our Work</p>
+        <h2 class="section-title">Before the Keys<br>Go Back</h2>
+      </div>
+      <p class="section-desc">A look at recent jobs from the studio floor — every panel, every detail, finished the way we'd want it on our own car.</p>
+    </div>
+
+    <div class="gallery-grid fade-up">
+      <div class="g-item g-wide g-tall">
+        <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=900&q=80" alt="Full ceramic coating finish" />
+        <div class="g-tag">Ceramic Coating<span>Sedan · Gloss Black</span></div>
+      </div>
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=600&q=80" alt="Interior detailing" />
+        <div class="g-tag">Interior Detail<span>Seats &amp; Dash</span></div>
+      </div>
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1520031441872-265e4ff70366?w=600&q=80" alt="Foam wash" />
+        <div class="g-tag">Foam Pre-Wash<span>SUV</span></div>
+      </div>
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?w=600&q=80" alt="Wheel detailing" />
+        <div class="g-tag">Wheel &amp; Tyre<span>Deep Clean</span></div>
+      </div>
+      <div class="g-item g-wide">
+        <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=900&q=80" alt="Paint correction polish" />
+        <div class="g-tag">Paint Correction<span>Swirl Removal</span></div>
+      </div>
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1605164598471-3edcd0a3c5b0?w=600&q=80" alt="Headlight restoration" />
+        <div class="g-tag">Headlight Restore<span>Hatchback</span></div>
+      </div>
+      <div class="g-item g-tall">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80" alt="Final detailed finish" />
+        <div class="g-tag">Final Inspection<span>Hand Buffed</span></div>
+      </div>
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1556800572-1b8aeef2c54f?w=600&q=80" alt="Engine bay detailing" />
+        <div class="g-tag">Engine Bay<span>Degrease &amp; Dress</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── REVIEWS ── -->
+<section id="reviews">
+  <div class="section-inner">
+    <div class="reviews-header fade-up">
+      <div>
+        <p class="section-label">Reviews</p>
+        <h2 class="section-title">Customers Say It Best</h2>
+      </div>
+      <div class="rating-summary">
+        <div class="rs-score">4.8</div>
+        <div class="rs-meta">
+          <span class="rs-stars">★★★★★</span>
+          <span class="rs-count">Based on 26 Google reviews</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card fade-up">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-quote">Ranjan Varma did a clean job in polishing and removing rust on a 5-year-old Royal Enfield Classic 350 — took the bike as good as new. Best work for low price.</p>
+        <div class="review-author">
+          <div class="ra-avatar">RV</div>
+          <div><div class="ra-name">Royal Enfield Owner</div><div class="ra-sub">Bike Detailing · Rust Removal</div></div>
+        </div>
+      </div>
+
+      <div class="review-card fade-up">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-quote">I did a full body Teflon coating and they also removed all the rusty areas and cleaned well. A great job done at an affordable cost. Keep up the good work.</p>
+        <div class="review-author">
+          <div class="ra-avatar">TC</div>
+          <div><div class="ra-name">Teflon Coating Customer</div><div class="ra-sub">Full Body Treatment</div></div>
+        </div>
+      </div>
+
+      <div class="review-card fade-up">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-quote">Truly amazed by the superb dedication, commitment, and perfection from RV Detailing. A friendly, professional team with immense knowledge — they bring a glittering finish every time. RV Detailing = 100% guaranteed glittering finish with long-lasting shine. Wishing Ranjan and Karthik good luck as the business grows.</p>
+        <div class="review-author">
+          <div class="ra-avatar">RV</div>
+          <div><div class="ra-name">Long-Time Customer</div><div class="ra-sub">Full Detailing Service</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-visual fade-up">
+        <img src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=800&q=80" alt="RV Auto Detailing studio" />
+        <div class="about-badge">
+          <div class="ab-num">4.8</div>
+          <div class="ab-label">Rated by 26 Customers</div>
+        </div>
+      </div>
+      <div class="about-content fade-up">
+        <p class="section-label">About Us</p>
+        <h2 class="section-title">Detailing Done<br>the Patient Way</h2>
+        <p class="about-body">RV Auto Detailing is a car care studio in Pallavaram, Chennai, run by Ranjan and Karthik — built on a simple idea: take the time most quick-washes skip. Every vehicle that comes through our doors, car or bike, gets inspected, treated, and finished by hand.</p>
+        <p class="about-body">We're not a drive-through wash. We're a studio for owners who want their car to look the way it did on day one — and to keep looking that way.</p>
+        <div class="about-list">
+          <div class="about-item">
+            <div class="ai-check"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+            <div class="ai-text"><strong>Hand-finished, every time</strong><span>No automated tunnels — every step is done by trained hands.</span></div>
+          </div>
+          <div class="about-item">
+            <div class="ai-check"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+            <div class="ai-text"><strong>Studio-grade products</strong><span>pH-neutral shampoos, premium ceramic coatings, and safe-grade polishes.</span></div>
+          </div>
+          <div class="about-item">
+            <div class="ai-check"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+            <div class="ai-text"><strong>26 happy customers and counting</strong><span>A 4.8-star reputation built one car at a time, right here in Pallavaram.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-label fade-up">Contact Us</p>
+    <h2 class="section-title fade-up">Bring Your Car In</h2>
+    <p class="section-desc fade-up" style="margin-bottom:56px;">Call ahead to book a slot, or drop in — we're on Jagajeevan Ram Street, Pallavaram.</p>
+
+    <div class="contact-grid">
+      <div class="fade-up">
+        <div class="contact-card">
+          <div class="cc-row">
+            <div class="cc-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div>
+            <div><div class="cc-label">Phone</div><div class="cc-value"><a href="tel:09566127537">095661 27537</a></div></div>
+          </div>
+          <div class="cc-row">
+            <div class="cc-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+            <div><div class="cc-label">Address</div><div class="cc-value">Jagajeevan Ram St, Pallavaram,<br>Chennai, Tamil Nadu 600075</div></div>
+          </div>
+          <div class="cc-row">
+            <div class="cc-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+            <div>
+              <div class="cc-label">Working Hours</div>
+              <div class="hours-table">
+                <div class="hours-row"><span class="hours-day">Mon – Sat</span><span class="hours-time">9:00 AM – 8:00 PM</span></div>
+                <div class="hours-row today"><span class="hours-day">Today</span><span class="hours-time">Open · Closes 8 PM</span></div>
+                <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">9:00 AM – 6:00 PM</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-panel" style="margin-top:24px;">
+          <iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=X4GQ%2BRF%20Chennai%2C%20Tamil%20Nadu&t=&z=15&ie=UTF8&iwloc=&output=embed">
+          </iframe>
+          <div class="map-footer">
+            <span class="plus-code">Plus Code: X4GQ+RF Chennai</span>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=X4GQ%2BRF+Chennai" target="_blank" rel="noopener">
+              Get Directions
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-card fade-up">
+        <p class="section-label" style="margin-bottom:8px;">Request a Quote</p>
+        <p style="font-size:13.5px;color:#999;font-weight:300;margin-bottom:8px;">Tell us about your car and what it needs — we'll call you back to confirm a slot.</p>
+        <div class="quote-form">
+          <div class="form-row">
+            <div class="form-group"><input type="text" placeholder="Your Name" /></div>
+            <div class="form-group"><input type="tel" placeholder="Phone Number" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <select>
+                <option value="">Car Type</option>
+                <option>Hatchback</option>
+                <option>Sedan</option>
+                <option>SUV</option>
+                <option>Luxury / Premium</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <select>
+                <option value="">Service Needed</option>
+                <option>Exterior Wash &amp; Foam</option>
+                <option>Interior Deep Clean</option>
+                <option>Paint Correction</option>
+                <option>Ceramic Coating</option>
+                <option>Engine Bay Detailing</option>
+                <option>Headlight Restoration</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <textarea placeholder="Anything specific you'd like us to know?"></textarea>
+          </div>
+          <button class="form-submit" onclick="this.textContent='✓ Request Sent — We will call you shortly'; this.style.background='#3A3F44'; this.style.color='#fff';">
+            Send Request
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">RV Auto <span>Detailing</span></div>
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Our Work</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="https://www.instagram.com/rvautodetailing24/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="footer-copy">© 2026 RV Auto Detailing, Pallavaram, Chennai.</div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/919566127537?text=Hi%2C%20I%27d%20like%20to%20book%20a%20detailing%20slot" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.77.46 3.45 1.32 4.95L2 22l5.32-1.39c1.43.78 3.04 1.2 4.72 1.2 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.78 14.07c-.24.68-1.39 1.3-1.92 1.37-.49.07-1.1.1-1.78-.11-.41-.13-.94-.3-1.62-.6-2.84-1.23-4.7-4.1-4.84-4.29-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.09.99-2.38.26-.28.57-.35.76-.35.19 0 .38 0 .54.01.18.01.41-.07.64.49.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.49-.14.14-.28.29-.12.56.16.28.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.21 1.36.28.14.44.12.6-.07.17-.19.71-.83.9-1.11.19-.28.38-.23.64-.14.26.09 1.66.78 1.94.93.28.14.47.21.54.33.07.12.07.71-.17 1.39z"/></svg>
+</a>
+
+<script>
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target);} });
+  },{threshold:0.1});
+  document.querySelectorAll('.fade-up').forEach((el,i)=>{
+    el.style.transitionDelay = `${(i%4)*70}ms`;
+    obs.observe(el);
+  });
+</script>
+</body>
+</html>
